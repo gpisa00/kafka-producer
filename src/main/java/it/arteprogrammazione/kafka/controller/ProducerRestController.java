@@ -22,6 +22,7 @@ public class ProducerRestController {
     @PostMapping("/publish")
     public String publishMessage(@RequestBody final Person person) {
         kafkaTemplate.send(new ProducerRecord<String, Person>(TOPIC, person.getLastName(), person));
+        System.out.println("Sto per inviare: " + person);
         return "Published successfully";
     }
 
